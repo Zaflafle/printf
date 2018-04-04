@@ -6,56 +6,60 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 04:56:11 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/28 15:39:37 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:14:45 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "../includes/ft_printf.h"
 
-char	*ft_app_taille_cham_moins_c(t_printf *list)
+static void	ft_app_taille_cham_moins_c_one(t_printf *list, char *tmp,
+			t_count *env)
 {
-	int		k;
-	int		i;
-	int		j;
-	int		t;
-	char	*tmp;
-
-	t = 0;
-	i = 1;
-	j = 1;
-	k = list->taille_cham;
-	if (list->plus == 1)
-		k = list->taille_cham - 1;
-	if (j > k)
-		t = j;
-	else
-		t = k;
-	if (!(tmp = (char*)malloc((sizeof(char) * (t + 1)))))
-		return (0);
-	tmp[t] = '\0';
-	tmp[0] = list->c;
-	if (j < t)
+	if (env->j < env->t)
 	{
 		if (list->plus == 1)
-			k = list->taille_cham - 1;
+			env->k = list->taille_cham - 1;
 		else
-			k = list->taille_cham;
-		while (i < k)
+			env->k = list->taille_cham;
+		while (env->i < env->k)
 		{
-			tmp[i] = ' ';
-			i++;
+			tmp[env->i] = ' ';
+			env->i++;
 		}
 	}
 	else
 	{
-		k = 0;
-		while (i < j)
+		env->k = 0;
+		while (env->i < env->j)
 		{
-			tmp[i] = list->str[k];
-			i++;
-			k++;
+			tmp[env->i] = list->str[env->k];
+			env->i++;
+			env->k++;
 		}
 	}
+}
+
+char		*ft_app_taille_cham_moins_c(t_printf *list)
+{
+	t_count	env;
+	char	*tmp;
+
+	ft_bzero(&env, sizeof(t_count));
+	tmp = NULL;
+	env.i = 1;
+	env.j = 1;
+	env.k = list->taille_cham;
+	if (list->plus == 1)
+		env.k = list->taille_cham - 1;
+	if (env.j > env.k)
+		env.t = env.j;
+	else
+		env.t = env.k;
+	if (!(tmp = (char*)malloc((sizeof(char) * (env.t + 1)))))
+		return (0);
+	tmp[env.t] = '\0';
+	tmp[0] = list->c;
+	ft_app_taille_cham_moins_c_one(list, tmp, &env);
 	return (tmp);
 }

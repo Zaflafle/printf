@@ -6,11 +6,12 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 04:00:35 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/03 07:35:41 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:34:57 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
+#include <stdio.h>
 
 int		ft_atoi(const char *nptr)
 {

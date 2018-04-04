@@ -1,0 +1,17 @@
+-- LIBFT
+	Retirer -g3
+
+-- MAKEFILE
+	Manque Werror
+	Retirer -g3
+	Retirer toute la merde
+
+-- UNICODES
+	MB_CUR_MAX Non testé
+	Taille de champs marche pas  [ft_printf("%4C", 10000)]
+
+-- HEXA
+	ft_printf("%x", 4294967296) Pas bon // Pareil pour X
+
+-- S
+	Segfault	ft_printf("{%30S}", L"我是一只猫。");

@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 22:14:06 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/13 03:19:56 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/03/31 18:05:33 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -617,7 +617,134 @@ printf("||%d||",printf("%li\n", LONG_MIN));
         // ft_printf("||1 %d||",ft_printf("1  %55p", &i));
         // ft_printf("2 : %#x\n", 15);                              a corriger
         // printf("1 : %#x\n", 15);
-         
+        // printf("{%d}\n", printf("Test 1 => |%05.d|", 0));
+        // printf("{%d}\n", printf("Test 1 => |%lls|", "salut"));        warnning ?
+        // ft_printf("2{%d}\n", ft_printf("25 => |%5.5s|\n", NULL));
+        // printf("1{%d}\n", printf("25 => |%5.5s|\n", NULL));
+        // ft_printf("{%d}\n", ft_printf("Test 1 => |%05p|", 0));        
+        // printf("{%d}\n", printf("Test 1 => |%05p|", 0));        
+        // printf("{%d}\n", ft_printf("Test 3 => |%#9.2p|", 1234));        
+        // printf("{%d}\n", printf("Test 3 => |%#9.2p|", 1234));        
+        // printf("{%d}\n", printf("Test 4 => |%.0p|, |%.p|", &i, &i));
+        // printf("{%d}\n", ft_printf("Test 4 => |%.0p|, |%.p|", &i, &i));
+        // printf("{%d}\n", printf("Test 5 => |%.1p|, |%.2p|", 0, 0));        
+        // printf("{%d}\n", ft_printf("Test 5 => |%.1p|, |%.2p|", 0, 0));        
+        // printf("{%d}\n", printf("Test 14 => |%.0p|, |%.p|", 0, 0));
+        // printf("{%d}\n", printf("Test 1 25 => |%5p|", &i));
+        // printf("{%d}\n", ft_printf("Test 25 => |%5p|", &i));
+        // printf("{%d}\n", printf("Test 1 => |% x|", (unsigned int)42));
+        // ft_printf("{%d}\n", printf("Test 18 => |%#2x|\n", 42));
+        // ft_printf("{%d}\n", ft_printf("Test 18 => |%#2x|\n", 42));
+        // printf("{%d}\n", printf("Test 19 => |%#5X|", 42));
+        // printf("{%d}\n", ft_printf("Test 19 => |%#5X|", 42));
+        // printf("{%d}\n", printf("1 Test 24 => |%#-9.5x|", 42));
+        // printf("{%d}\n", ft_printf("2 Test 24 => |%#-9.5x|", 42)); 
+        // printf("{%d}\n", printf("1 Test 32 => |%09.5x|\n", 42));
+        // printf("{%d}\n", ft_printf("2 Test 32 => |%09.5x|\n", 42));
+        // printf("{%d}\n", printf("1 Test 32 => |%09x|\n", 42));
+        // printf("{%d}\n", ft_printf("2 Test 32 => |%09x|\n", 42));
+        // printf("{%d}\n", printf("1 Test 35 => |%#-9.5x|\n", 0));
+        // printf("{%d}\n", ft_printf("2 Test 35 => |%#-9.5x|\n", 0));
+        // printf("{%d}\n", printf("1 Test 28 => |%-9.1x|\n", 42));
+        // printf("{%d}\n", ft_printf("2 Test 28 => |%-9.1x|\n", 42));
+        // printf("{%d}\n", printf("1 Test 37 => |%.x, %.2x|\n", 0, 0));
+        // printf("{%d}\n", ft_printf("2 Test 37 => |%.x, %.2x|\n", 0, 0));
+        // printf("{%d}\n", printf("1 Test 4 => |%#.o|\n", 42));
+        // printf("{%d}\n", ft_printf("2 Test 4 => |%#.o|\n", 42));
+        // printf("{%d}\n", printf("1 Test 24 => |%#-9.5o|\n", 42));
+        // printf("{%d}\n", ft_printf("2 Test 24 => |%#-9.5o|\n", 42));
+        // printf("{%d}\n", printf("1 Test 33 => |%#9.o|\n", 42));
+        // printf("{%d}\n", ft_printf("2 Test 33 => |%#9.o|\n", 42));
+        // printf("{%d}\n", printf("1 Test 36 => |%.o, %.0o|\n", 42, 42));        
+        // printf("{%d}\n", ft_printf("2 Test 36 => |%.o, %.0o|\n", 42, 42));        
+        // printf("{%d}\n", printf("1 Test 55 => |%#5o|\n", 0));
+        // printf("{%d}\n", ft_printf("2 Test 55 => |%#5o|\n", 0));
+        // printf("{%d}\n", printf("1 Test 2 => |%.u, %.0u|\n", 42, 42));
+        // printf("{%d}\n", ft_printf("2 Test 2 => |%.u, %.0u|\n", 42, 42));
+        // printf("{%d}\n", printf("1 Test 13 => |%05.2u|\n", (unsigned int)42));
+        // printf("{%d}\n", ft_printf("2 Test 13 => |%05.2u|\n", (unsigned int)42));
+        // printf("{%d}\n", printf("1 Test 41 => |%05u|\n", 0));        
+        // printf("{%d}\n", ft_printf("2 Test 41 => |%05u|\n", 0));
+        // printf("{%d}\n", printf("1 Test 43 => |%#9.2u|\n", 1234));        
+        // printf("{%d}\n", ft_printf("2 Test 43 => |%#9.2u|\n", 1234));  
+        // printf("{%d}\n", printf("1 Test 12 => |%05.1zd|\n", 42));
+        // printf("{%d}\n", ft_printf("2 Test 12 => |%05.1zd|\n", 42));
+        // printf("{%d}\n", printf("1 Test 13 => |%09.5d|\n", 42));        
+        // printf("{%d}\n", ft_printf("2 Test 13 => |%09.5d|\n", 42));
+        // printf("{%d}\n", printf("1 Test 20 => |%+.5d|\n", 42));        
+        // printf("{%d}\n", ft_printf("2 Test 20 => |%+.5d|\n", 42));        
+        // printf("{%d}\n", printf("1 Test 24 => |%+.5d|\n", -42));
+        // printf("{%d}\n", ft_printf("2 Test 24 => |%+.5d|\n", -42));
+        // printf("{%d}\n", printf("1 Test 23 => |% .5d|\n", -42));
+        // printf("{%d}\n", ft_printf("2 Test 23 => |% .5d|\n", -42));
+        // printf("{%d}\n", printf("1 Test 9 => |% d|\n", 42));        
+        // printf("{%d}\n", ft_printf("2 Test 9 => |% d|\n", 42));        
+        // printf("{%d}\n", printf("1 Test 32 => |%.5hhd|\n", (char)-42));
+        // printf("{%d}\n", ft_printf("2 Test 32 => |%.5hhd|\n", (char)-42));
+        // printf("{%d}\n", printf("1 Test 56 => |%10.5d|, |%10.5d|\n", 0, 0));
+        // printf("{%d}\n", ft_printf("2 Test 56 => |%10.5d|, |%10.5d|\n", 0, 0));
+        // printf("{%d}\n", printf("\033[1;32mTest 1 => \033[0m|%05.S|", L"42 c est cool"));
+        // printf("{%d}\n", printf("\033[1;32mTest 2 => \033[0m|%.4S|", L"我¼是一只猫。"));
+        // printf("{%d}\n", printf("\033[1;32mTest 3 => \033[0m|%15.6S|", L"我¼是一只猫。"));
+        // printf("{%d}\n", printf("\033[1;32mTest 5 => \033[0m|%4.S|", L"我是一只猫。"));
+        // ft_printf("{%d}\n", ft_printf("\033[1;31mTest 34 => \033[0m|%-8.2S|", NULL));
+        // printf("{%d}\n", printf("Test 13 => |%S|\n", L"é é é é é"));
+        // printf("{%d}\n", ft_printf("Test 13 => |%S|\n", L"é é é é é"));
+        // ft_printf("%+10.5d\n", 4242);
+        // printf("%+10.5d\n", 4242);
+        // printf("{%d}\n", printf("|%-#6o|\n", 2500));        
+        // printf("{%d}\n", ft_printf("|%-#6o|\n", 2500));      
+        // printf("%#X\n", 42);
+        // ft_printf("%#X\n", 42);  
+        // printf("@moulitest: %5.x %5.0x\n", 0, 0);
+        // ft_printf("@moulitest: %5.x %5.0x\n", 0, 0);
+        // printf("@moulitest: %5.d %5.0d\n", 0, 0);
+        // ft_printf("@moulitest: %5.d %5.0d\n", 0, 0);
+        // printf("{%d}\n", printf("1 Test 1 => |%ld|\n", LONG_MAX));                
+        // printf("{%d}\n", ft_printf("2 Test 1 => |%ld|\n", LONG_MAX));
+        // ft_printf("%20.15d\n", 54321);
+        // ft_printf("%.4d\n", 42);
+        // ft_printf("%.4d\n", 424242);
+        // ft_printf("%.4d\n", -424242);
+        // ft_printf("%15.4d\n", 42);
+        // ft_printf("%15.4d\n", 424242);
+        // ft_printf("%8.4d\n", 424242424);
+        // ft_printf("%15.4d\n", -42);
+        // ft_printf("%15.4d\n", -424242);
+        // ft_printf("%8.4d\n", -424242424);
+        // ft_printf("%4.15d\n", 42);
+        // ft_printf("%4.15d\n", 424242);
+        // ft_printf("%4.8d\n", 424242424);
+        // ft_printf("%4.15d\n", -42);
+        // ft_printf("%4.15d\n", -424242);
+        // ft_printf("%4.8d\n", -424242424);
+        // ft_printf("%.d, %.0d\n", 0, 0);
+        // ft_printf("%.10d\n", -42);
+        // ft_printf("%.4i\n", 42);
+        // ft_printf("%15.4i\n", 42);
+        // ft_printf("%4.15i\n", 42);
+        // ft_printf("%.i, %.0i\n", 0, 0);
+        // ft_printf("%.4u\n", 42);
+        // ft_printf("%.4u\n", 424242);
+        // ft_printf("%15.4u\n", 42);
+        // ft_printf("%15.4u\n", 424242);
+        // ft_printf("%8.4u\n", 424242424);
+        // ft_printf("%4.15u\n", 42);
+        // ft_printf("%4.15u\n", 424242);
+        // ft_printf("%4.8u\n", 424242424);
+        // ft_printf("%.u, %.0u\n", 0, 0);
+        // ft_printf("%p\n", &i);
+        // printf("%p\n", &i);
+        // printf("{%d}\n", printf("1 Test 0 => |%15p|\n", &i));    
+        // ft_printf("{%d}\n", ft_printf("2 Test 0 => |%15p|\n", &i)); 
+        // printf("{%d}\n", printf("1 Test 1 => |%05p|\n", 0));
+        // ft_printf("{%d}\n", ft_printf("2 Test 1 => |%05p|\n", 0));
+        // printf("{%d}\n", printf("\033[1;31mTest 4 => \033[0m|%.0p|, |%.p|", 0, 0));
+        // printf("{%d}\n", printf("\033[1;32mTest 23 => \033[0m|%#05p|", 42));
+        // printf("{%d}\n", printf("\033[1;32mTest 6 => \033[0m|%lls|", "salut"));
+    	// printf("{%d}\n", printf("\033[1;32mTest 3 => \033[0m|%#10RR|"));
         
-        return (0);
+    
+    
+    return (0);
 }

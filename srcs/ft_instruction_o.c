@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 05:16:59 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/28 15:08:10 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:32:43 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char		*ft_annex_o_yes(t_printf *list, char *tmp,
 		ft_strdel(&tmp);
 	}
 	if (list->moins == 1)
-		tmp = ft_app_taille_cham_moins_o(list);
+		tmp = ft_app_taille_cham_moins_o(list, u);
 	else
 		tmp = ft_app_taille_cham(list);
 	if (list->plus == 1)
@@ -69,7 +69,7 @@ static int		ft_instruction_o_yes(va_list *args, char *format,
 	u = 0;
 	if (list->chetoile == 1)
 		list->taille_cham = va_arg(*args, int);
-	ft_flag_cast(args, format, list);
+	ft_flag_cast(args, list);
 	tmp = ft_annex_o_yes(list, tmp, &u, &ret);
 	tmp = ft_annex_o_yes_plus(list, tmp, &ret, &u);
 	free(list->str);

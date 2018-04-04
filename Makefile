@@ -6,7 +6,7 @@
 #    By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/30 22:29:02 by macuguen          #+#    #+#              #
-#    Updated: 2018/02/28 18:08:43 by macuguen         ###   ########.fr        #
+#    Updated: 2018/04/04 19:52:34 by macuguen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = libftprintf.a
 CC = gcc
 #CFLAGS = 
-CFLAGS = -Wall -Wextra -g3
+CFLAGS = -Wall -Wextra -fsanitize=address -g3
 
 LIBDIR = ./libft/
 SRCDIR = ./srcs/
@@ -31,17 +31,26 @@ SRC = source.c \
 		ft_itoa_base.c \
 		ft_itoa_base_next.c \
 		ft_app_preci.c \
-		ft_app_cham.c \
+		ft_app_cham_c.c \
+		ft_app_cham_d.c \
+		ft_app_taille_cham.c \
+		ft_app_taille_cham_w.c \
+		ft_app_taille_cham_moins_p.c \
+		ft_app_taille_cham_moins.c \
+		ft_app_cham_moins_o.c \
 		ft_app_cham_next.c \
-		ft_app_cham_next_two.c \
 		ft_app_cham_next_one.c \
 		ft_taille_cham_preci.c \
+		ft_instruction_unis_no.c \
 		ft_utils.c \
+		ft_instruction_big_x_bis.c \
 		ft_utils_next.c \
 		ft_flag_cast.c \
 		ft_utils_next_one.c \
 		ft_instruction_d_i.c \
+		ft_instruction_d_i_bis.c \
 		ft_instruction_d_i_no.c \
+		ft_instruction_d_i_no_bis.c \
 		ft_instruction_o.c \
 		ft_instruction_o_no.c \
 		ft_instruction_x.c \

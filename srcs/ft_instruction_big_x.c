@@ -6,39 +6,12 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 07:21:41 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/06 22:25:33 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:04:06 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "../includes/ft_printf.h"
-
-static char		*ft_annex_x_yes_end(t_printf *list, char *tmp, int u, int *ret)
-{
-	if (list->dieze == 1 && ft_atoi(tmp) != 0)
-	{
-		if (list->zero == 1 && list->champ == 1)
-			ft_dieze_zero(tmp);
-		else if (list->champ == 1 && list->moins != 1)
-			ft_dieze_espace(tmp);
-		else if (list->moins == 1)
-			ft_dieze_moins(tmp);
-		else
-		{
-			ft_putstr("0X");
-			*ret = *ret + 2;
-		}
-	}
-	if (list->point == 1 && u == 2 && list->precision == 0 && list->champ == 0)
-		*ret = *ret + 0;
-	else
-	{
-		ft_strupper(tmp);	
-		*ret = *ret + ft_strlen(tmp);
-		ft_putstr(tmp);
-	}
-	return (tmp);
-}
 
 static char		*ft_annex_x_yes_plus(t_printf *list, char *tmp, int *ret)
 {
@@ -85,7 +58,7 @@ static int		ft_instruction_big_x_yes(va_list *args, char *format,
 	u = 0;
 	if (list->chetoile == 1)
 		list->taille_cham = va_arg(*args, int);
-	ft_flag_cast(args, format, list);
+	ft_flag_cast(args, list);
 	if (ft_atoi(list->str) == 0)
 		u = 2;
 	ft_strupper(tmp);
@@ -111,10 +84,10 @@ static int		ft_instruction_big_x_no(va_list *args, char *format,
 
 	u = 0;
 	ret = 0;
-	ft_flag_cast(args, format, list);
+	ft_flag_cast(args, list);
 	tmp = ft_annex_x_yes(list, tmp, &u);
 	tmp = ft_annex_x_yes_plus(list, tmp, &ret);
-	tmp = ft_annex_x_yes_end(list, tmp, u, &ret);
+	tmp = ft_annex_big_x_yes_end(list, tmp, u, &ret);
 	free(list->str);
 	free(tmp);
 	ft_memset(list, 0, sizeof(t_printf));

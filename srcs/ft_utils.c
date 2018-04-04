@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 05:04:08 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/28 14:07:01 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/03/16 05:46:06 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,24 @@
 
 char	*ft_dieze_moins(char *tmp)
 {
-	int		i;
-	char	c;
-	char	t;
+	unsigned int		i;
+	int					y;
+	char				*tg;
 
+	tg = ft_memalloc(ft_strlen(tmp));
 	i = 0;
-	c = tmp[i];
-	t = tmp[i + 1];
-	tmp[i] = '0';
-	i = i + 1;
-	tmp[i] = 'x';
-	i = i + 1;
-	tmp[i] = c;
-	i = i + 1;
-	tmp[i] = t;
-	return (tmp);
+	tg[0] = '0';
+	tg[1] = 'x';
+	i = 2;
+	y = 0;
+	while (i < ft_strlen(tmp))
+	{
+		tg[i] = tmp[y];
+		y++;
+		i++;
+	}
+	free(tmp);
+	return (tg);
 }
 
 char	*ft_neg_champ(char *tmp)

@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 05:20:44 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/27 17:00:26 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:33:21 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,36 @@ int		ft_base(t_printf *list)
 	if (list->conv_x == 1)
 		return (16);
 	return (0);
+}
+
+int		ft_for_the_norm_bis(char *format, int *i)
+{
+	if (format[*i] == 'd' || format[*i] == 'i' || format[*i] == 'o' ||
+		format[*i] == 'u' || format[*i] == 'x' || format[*i] == 's' ||
+		format[*i] == 'c' || format[*i] == 'p' || format[*i] == 'X' ||
+		format[*i] == 'U' || format[*i] == 'O' || format[*i] == 'S' ||
+		format[*i] == 'C' || format[*i] == '%' || format[*i] == 'D')
+		return (1);
+	else
+		return (0);
+}
+
+int		ft_for_the_norm(char *format, int *i)
+{
+	if (format[*i] != 'd' || format[*i] != 'i' || format[*i] != 'o' ||
+		format[*i] != 'u' || format[*i] != 'x' || format[*i] != 's' ||
+		format[*i] != 'c' || format[*i] != 'p' || format[*i] != 'X' ||
+		format[*i] != 'U' || format[*i] != 'O' || format[*i] != 'S' ||
+		format[*i] != 'C' || format[*i] != '%' || format[*i] != 'D')
+		return (1);
+	else
+		return (0);
+}
+
+void	ft_flag_parce_choice_end_bis(t_printf *list, char *format, int *i)
+{
+	if (format[*i] == 'o')
+		list->conv_o = 1;
+	else if (format[*i] == 'O')
+		list->conv_O = 1;
 }

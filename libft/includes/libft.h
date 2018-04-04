@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 02:07:22 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/28 15:43:04 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/04 18:10:31 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void			ft_strdel_w(wchar_t **as);
 void			ft_putstr_w(wchar_t const *s);
 wchar_t			*ft_strdup_wchar(const wchar_t *src);
 void			ft_strupper(char *tmp);
+size_t			ft_count_bit_w(wchar_t c);
 
 #endif

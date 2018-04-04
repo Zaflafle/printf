@@ -6,12 +6,32 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 05:44:31 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/07 00:10:50 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 20:43:49 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "../includes/ft_printf.h"
+
+char			*ft_plus_champ_tmfc(char *tmp)
+{
+	unsigned int		i;
+	int					y;
+	char				*tg;
+
+	tg = ft_memalloc(ft_strlen(tmp));
+	tg[0] = '0';
+	i = 1;
+	y = 0;
+	while (i < ft_strlen(tmp) + 1)
+	{
+		tg[i] = tmp[y];
+		y++;
+		i++;
+	}
+	free(tmp);
+	return (tg);
+}
 
 static char		*ft_annex_o_no_plus(t_printf *list, char *tmp, int *ret, int *u)
 {
@@ -40,23 +60,39 @@ static char		*ft_annex_o_no_plus(t_printf *list, char *tmp, int *ret, int *u)
 	return (tmp);
 }
 
-static char		*ft_annex_o_no(t_printf *list, char *tmp, int *u, int *ret)
+static void		*ft_annex_o_no_bis(t_printf *list, char *tmp, int *u)
 {
 	if (ft_atoi(list->str) == 0)
 		*u = 2;
+	if (list->zero == 1 && list->point == 1)
+	{
+		list->zero = 0;
+		tmp = ft_app_taille_cham_moins(list);
+	}
 	if (list->point == 1)
 	{
 		tmp = ft_app_taille_precipour_d(list, u);
 		list->str = ft_strdup(tmp);
 		ft_strdel(&tmp);
 	}
+}
+
+static char		*ft_annex_o_no(t_printf *list, char *tmp, int *u, int *ret)
+{
+	ft_annex_o_no_bis(list, tmp, u);
 	if (list->moins == 1)
-		tmp = ft_app_taille_cham_moins_o(list);
+		tmp = ft_app_taille_cham_moins_o(list, u);
 	else
 		tmp = ft_app_taille_cham(list);
 	if (list->plus == 1)
 	{
 		ft_putchar('+');
+		*ret = *ret + 1;
+	}
+	if (list->point == 1 && list->precision == 0 &&
+		*u != 2 && list->champ == 0 && list->dieze == 1)
+	{
+		ft_putchar('0');
 		*ret = *ret + 1;
 	}
 	return (tmp);
@@ -72,7 +108,7 @@ int				ft_instruction_o_no(va_list *args, char *format,
 	ret = 0;
 	i = 0;
 	u = 0;
-	ft_flag_cast(args, format, list);
+	ft_flag_cast(args, list);
 	tmp = ft_annex_o_no(list, tmp, &u, &ret);
 	tmp = ft_annex_o_no_plus(list, tmp, &ret, &u);
 	free(list->str);

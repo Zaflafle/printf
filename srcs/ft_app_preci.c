@@ -6,58 +6,64 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 04:23:29 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/28 19:26:48 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 19:29:16 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "../includes/ft_printf.h"
 
+static void	ft_app_taille_precipour_d_two(t_printf *list,
+			char *tmp, t_count *env)
+{
+	env->k = 0;
+	while (env->i < env->j)
+	{
+		tmp[env->i] = list->str[env->k];
+		env->i++;
+		env->k++;
+	}
+}
+
+static void	ft_app_taille_precipour_d_one(t_printf *list, char *tmp,
+			t_count *env, int *u)
+{
+	while (env->i < env->k)
+		tmp[env->i++] = '0';
+	env->k = 0;
+	while (env->i < list->precision)
+	{
+		if (*u == 1 && list->str[env->k] == '-')
+			tmp[env->i] = '0';
+		else
+			tmp[env->i] = list->str[env->k];
+		env->i++;
+		env->k++;
+	}
+}
+
 char		*ft_app_taille_precipour_d(t_printf *list, int *u)
 {
-	int		k;
-	int		i;
-	int		j;
-	int		t;
+	t_count	env;
 	char	*tmp;
 
-	t = 0;
-	i = 0;
-	j = ft_strlen(list->str);
-	k = list->precision;
-	if (j > k)
-		t = j;
+	ft_bzero(&env, sizeof(t_count));
+	tmp = NULL;
+	env.j = ft_strlen(list->str);
+	env.k = list->precision;
+	if (env.j > env.k)
+		env.t = env.j;
 	else
-		t = k;
-	if (!(tmp = (char*)malloc((sizeof(char) * (t + 1)))))
+		env.t = env.k;
+	if (!(tmp = (char*)malloc((sizeof(char) * (env.t + 1)))))
 		return (0);
-	tmp[t] = '\0';
-	k = list->precision - j;
-	if (j < t)
-	{
-		while (i < k)
-			tmp[i++] = '0';
-		k = 0;
-		while (i < list->precision)
-		{
-			if (*u == 1 && list->str[k] == '-')
-				tmp[i] = '0';
-			else
-				tmp[i] = list->str[k];
-			i++;
-			k++;
-		}
-	}
+	ft_bzero(tmp, env.t + 1);
+	tmp[env.t] = '\0';
+	env.k = list->precision - env.j;
+	if (env.j < env.t)
+		ft_app_taille_precipour_d_one(list, tmp, &env, u);
 	else
-	{
-		k = 0;
-		while (i < j)
-		{
-			tmp[i] = list->str[k];
-			i++;
-			k++;
-		}
-	}
+		ft_app_taille_precipour_d_two(list, tmp, &env);
 	return (tmp);
 }
 

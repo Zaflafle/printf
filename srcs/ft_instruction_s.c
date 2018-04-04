@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 06:48:26 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/07 01:31:12 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/03/28 20:51:04 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int				ft_instruction_s(va_list *args, char *format, t_printf *list)
 	tmp = NULL;
 	ret = 0;
 	if (list->flag_l == 1)
-		ret = ret + ft_instruction_unis(args, format, list);
+		ret = ret + ft_instruction_unis(args, list);
 	else
 	{
 		if (list->pretoile != 1 && list->chetoile != 1)

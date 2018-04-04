@@ -6,13 +6,12 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:18:51 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/01 21:36:26 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/04 18:50:33 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
-
-size_t			ft_count_bit_w(wchar_t c);
+#include "stdio.h"
 
 size_t			ft_strlen_w(const wchar_t *str)
 {
@@ -25,6 +24,7 @@ size_t			ft_strlen_w(const wchar_t *str)
 		return (0);
 	while (str[i] != '\0')
 	{
+		printf("i = {%zu}; j = {%zu}\n", i, j);
 		j = j + ft_count_bit_w(str[i]);
 		i++;
 	}

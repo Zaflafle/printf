@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 06:08:34 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/28 16:53:49 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 20:43:49 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int		ft_instruction_x_yes(va_list *args, char *format,
 		if (list->pretoile == 1)
 			list->precision = va_arg(*args, int);
 	}
-	ft_flag_cast(args, format, list);
+	ft_flag_cast(args, list);
 	tmp = ft_annex_x_yes(list, tmp, &u);
 	tmp = ft_annex_x_yes_plus(list, tmp, &ret);
 	tmp = ft_annex_x_yes_end(list, tmp, u, &ret);

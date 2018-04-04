@@ -6,164 +6,64 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 04:46:19 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/05 03:30:50 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 21:09:28 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "../includes/ft_printf.h"
 
-char		*ft_app_taille_cham(t_printf *list)
+static void	ft_app_taille_cham_moins_w_two(t_printf *list,
+			char *tmp, t_count *env)
 {
-	int		k;
-	int		i;
-	int		j;
-	int		t;
-	char	*tmp;
-
-	t = 0;
-	i = 0;
-	j = ft_strlen(list->str);
-	k = list->taille_cham;
-	if (j > k)
-		t = j;
-	else
-		t = k;
-	if (!(tmp = (char*)malloc((sizeof(char) * (t + 1)))))
-		return (0);
-	tmp[t] = '\0';
-	k = list->taille_cham - j;
-	if (j < t)
+	env->k = 0;
+	while (env->i < env->j)
 	{
-		while (i < k)
-		{
-			if (list->zero == 1)
-				tmp[i] = '0';
-			else
-				tmp[i] = ' ';
-			i++;
-		}
-		k = 0;
-		if (list->dieze == 1)
-			tmp[i - 1] = '0';
-		while (i < list->taille_cham)
-		{
-			tmp[i] = list->str[k];
-			i++;
-			k++;
-		}
+		tmp[env->i] = list->unico[env->k];
+		env->i++;
+		env->k++;
 	}
-	else
-	{
-		k = 0;
-		while (i < j)
-		{
-			tmp[i] = list->str[k];
-			i++;
-			k++;
-		}
-	}
-	return (tmp);
 }
 
-wchar_t		*ft_app_taille_cham_w(t_printf *list)
+static void	ft_app_taille_cham_moins_w_one(t_printf *list,
+			char *tmp, t_count *env)
 {
-	int		k;
-	int		i;
-	int		j;
-	int		t;
-	wchar_t	*tmp;
-
-	t = 0;
-	i = 0;
-	j = ft_strlen_w(list->unico);
-	k = list->taille_cham;
-	if (j > k)
-		t = j;
-	else
-		t = k;
-	if (!(tmp = (wchar_t*)malloc((sizeof(wchar_t) * (t + 1)))))
-		return (0);
-	tmp[t] = '\0';
-	k = list->taille_cham - j;
-	if (j < t)
+	while (env->i < env->j)
 	{
-		while (i < k)
-		{
-			if (list->zero == 1)
-				tmp[i] = '0';
-			else
-				tmp[i] = ' ';
-			i++;
-		}
-		k = 0;
-		while (i < list->taille_cham)
-		{
-			tmp[i] = list->unico[k];
-			i++;
-			k++;
-		}
+		tmp[env->i] = list->unico[env->k];
+		env->i++;
+		env->k++;
 	}
-	else
+	env->k = list->taille_cham;
+	while (env->i < env->k)
 	{
-		k = 0;
-		while (i < j)
-		{
-			tmp[i] = list->unico[k];
-			i++;
-			k++;
-		}
+		tmp[env->i] = '1';
+		env->i++;
 	}
-	return (tmp);
 }
 
 wchar_t		*ft_app_taille_cham_moins_w(t_printf *list)
 {
-	int		k;
-	int		i;
-	int		j;
-	int		t;
+	t_count	env;
 	wchar_t	*tmp;
 
-	t = 0;
-	i = 0;
-	j = ft_strlen_w(list->unico);
-	k = list->taille_cham;
+	ft_bzero(&env, sizeof(t_count));
+	tmp = NULL;
+	env.j = ft_strlen_w(list->unico);
+	env.k = list->taille_cham;
 	if (list->plus == 1)
-		k = list->taille_cham - 1;
-	if (j > k)
-		t = j;
+		env.k = list->taille_cham - 1;
+	if (env.j > env.k)
+		env.t = env.j;
 	else
-		t = k;
-	if (!(tmp = (wchar_t*)malloc((sizeof(wchar_t) * (t + 1)))))
+		env.t = env.k;
+	if (!(tmp = (wchar_t*)malloc((sizeof(wchar_t) * (env.t + 1)))))
 		return (0);
-	tmp[t] = '\0';
-	k = 0;
-	if (j < t)
-	{
-		while (i < j)
-		{
-			tmp[i] = list->unico[k];
-			i++;
-			k++;
-		}
-		k = list->taille_cham;
-		while (i < k)
-		{
-			tmp[i]= '1';
-			i++;
-		}
-		
-	}
+	tmp[env.t] = '\0';
+	env.k = 0;
+	if (env.j < env.t)
+		ft_app_taille_cham_moins_w_one(list, tmp, &env);
 	else
-	{
-		k = 0;
-		while (i < j)
-		{
-			tmp[i] = list->unico[k];
-			i++;
-			k++;
-		}
-	}
+		ft_app_taille_cham_moins_w_two(list, tmp, &env);
 	return (tmp);
 }

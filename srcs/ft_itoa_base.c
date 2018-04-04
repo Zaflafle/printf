@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 04:03:55 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/07 05:03:53 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:44:51 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 char	*ft_convert(long long int n, int base, char *str, int i)
 {
 	long long int	div;
-	char		temp;
-	int			sign;
+	char			temp;
+	int				sign;
 
 	div = 1;
 	sign = (n < 0) ? -1 : 1;
@@ -29,7 +29,7 @@ char	*ft_convert(long long int n, int base, char *str, int i)
 	{
 		temp = '0' + ((n / div) * sign);
 		if (temp > '9')
-				str[i] = (temp + 39);
+			str[i] = (temp + 39);
 		else
 			str[i] = temp;
 		n %= div;
@@ -44,9 +44,9 @@ char	*ft_itoa_base(long long int n, int base)
 	char	*str;
 	int		i;
 
-	str = (char *)malloc(sizeof(*str) * 12);
+	str = (char *)malloc(sizeof(*str) * 22);
 	i = 0;
-	while (i < 12)
+	while (i < 22)
 	{
 		str[i] = '\0';
 		i++;

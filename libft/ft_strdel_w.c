@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 03:22:13 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/22 03:24:47 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/03/23 17:51:03 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,5 @@
 void	ft_strdel_w(wchar_t **as)
 {
 	if (as != NULL)
-	{
 		ft_memdel((void**)as);
-	}
 }

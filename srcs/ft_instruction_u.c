@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 05:57:39 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/06 21:58:23 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 20:45:14 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,17 @@
 static int		ft_instruction_u_yes(va_list *args, char *format,
 				t_printf *list, char *tmp)
 {
-	int ret;
-	int u;
+	t_count	env;
 
-	ret = 0;
-	u = 0;
+	ft_bzero(&env, sizeof(t_count));
 	if (list->chetoile == 1)
 		list->taille_cham = va_arg(*args, int);
+	if (list->pretoile == 1)
+		list->precision = va_arg(*args, int);
+	ft_flag_cast(args, list);
 	if (list->point == 1)
 	{
-		if (list->pretoile == 1)
-			list->precision = va_arg(*args, int);
-	}
-	ft_flag_cast(args, format, list);
-	if (list->point == 1)
-	{
-		tmp = ft_app_taille_precipour_d(list, &u);
+		tmp = ft_app_taille_precipour_d(list, &env.u);
 		list->str = ft_strdup(tmp);
 		ft_strdel(&tmp);
 	}
@@ -39,44 +34,50 @@ static int		ft_instruction_u_yes(va_list *args, char *format,
 		tmp = ft_app_taille_cham_moins(list);
 	else
 		tmp = ft_app_taille_cham(list);
-	ret = ret + ft_strlen(tmp);
+	env.ret = env.ret + ft_strlen(tmp);
 	ft_putstr(tmp);
 	free(list->str);
 	free(tmp);
 	ft_memset(list, 0, sizeof(t_printf));
-	return (ret);
+	return (env.ret);
+}
+
+static void		ft_instruction_u_no_bis(t_count *env, t_printf *list, char *tmp)
+{
+	if (list->point == 1 && list->precision == 0 && ft_atoi(list->str) == 0)
+		env->ret = env->ret + 0;
+	else
+	{
+		ft_putstr(tmp);
+		env->ret = env->ret + ft_strlen(tmp);
+	}
 }
 
 static int		ft_instruction_u_no(va_list *args, char *format,
 				t_printf *list, char *tmp)
 {
-	int ret;
-	int u;
+	t_count	env;
 
-	ret = 0;
-	u = 0;
-	ft_flag_cast(args, format, list);
+	ft_bzero(&env, sizeof(t_count));
+	list->dieze = 0;
+	ft_flag_cast(args, list);
 	if (list->point == 1)
 	{
-		tmp = ft_app_taille_precipour_d(list, &u);
+		tmp = ft_app_taille_precipour_d(list, &env.u);
 		list->str = ft_strdup(tmp);
 		ft_strdel(&tmp);
 	}
+	if (list->precision <= (int)ft_strlen(list->str) && list->point == 1)
+		list->zero = 0;
 	if (list->moins == 1)
 		tmp = ft_app_taille_cham_moins(list);
 	else
 		tmp = ft_app_taille_cham(list);
-	if (list->point == 1 && list->precision == 0)
-		ret = ret + 0;
-	else
-	{
-		ft_putstr(tmp);
-		ret = ret + ft_strlen(tmp);
-	}
+	ft_instruction_u_no_bis(&env, list, tmp);
 	free(list->str);
 	free(tmp);
 	ft_memset(list, 0, sizeof(t_printf));
-	return (ret);
+	return (env.ret);
 }
 
 int				ft_instruction_u(va_list *args, char *format, t_printf *list)

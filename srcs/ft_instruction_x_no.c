@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 06:19:01 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/28 14:18:11 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 20:43:49 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ static char		*ft_annex_x_yes_end(t_printf *list, char *tmp, int u, int *ret)
 	{
 		if (list->zero == 1 && list->champ == 1)
 			ft_dieze_zero(tmp);
-		else if (list->champ == 1 && list->moins != 1)
+		else if (list->champ == 1 && list->moins != 1 &&
+				ft_strlen(list->str) != (unsigned int)list->taille_cham)
 			ft_dieze_espace(tmp);
 		else if (list->moins == 1)
-			ft_dieze_moins(tmp);
+			tmp = ft_dieze_moins(tmp);
 		else
 		{
 			ft_putstr("0x");
@@ -59,16 +60,25 @@ static char		*ft_annex_x_yes(t_printf *list, char *tmp, int *u)
 {
 	if (ft_atoi(list->str) == 0)
 		*u = 2;
+	if (list->zero == 1 && list->point == 1)
+	{
+		list->zero = 0;
+		tmp = ft_app_taille_cham_moins(list);
+	}
 	if (list->point == 1)
 	{
 		tmp = ft_app_taille_precipour_d(list, u);
-		if (ft_atoi(list->str) == 0)
+		if (*u == 2 && list->zero != 1 && list->precision == 0)
 			tmp[0] = ' ';
 		list->str = ft_strdup(tmp);
 		ft_strdel(&tmp);
 	}
 	if (list->moins == 1)
+	{
 		tmp = ft_app_taille_cham_moins(list);
+		if (list->point == 1 && *u == 2)
+			tmp[0] = '0';
+	}
 	else
 		tmp = ft_app_taille_cham_d(list);
 	return (tmp);
@@ -82,12 +92,14 @@ int				ft_instruction_x_no(va_list *args, char *format,
 
 	ret = 0;
 	u = 0;
-	ft_flag_cast(args, format, list);
+	ft_flag_cast(args, list);
 	tmp = ft_annex_x_yes(list, tmp, &u);
 	tmp = ft_annex_x_yes_plus(list, tmp, &ret);
 	tmp = ft_annex_x_yes_end(list, tmp, u, &ret);
 	free(list->str);
+	list->str = NULL;
 	free(tmp);
+	tmp = NULL;
 	ft_memset(list, 0, sizeof(t_printf));
 	return (ret);
 }

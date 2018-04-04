@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 07:36:42 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/06 22:08:35 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 22:04:28 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		ft_instruction_big_o_yes(va_list *args, char *format,
 	ret = 0;
 	if (list->chetoile == 1)
 		list->taille_cham = va_arg(*args, int);
-	ft_flag_cast(args, format, list);
+	ft_flag_cast(args, list);
 	tmp = ft_app_taille_cham(list);
 	ret = ret + ft_strlen(tmp);
 	ft_putstr(tmp);
@@ -29,6 +29,43 @@ static int		ft_instruction_big_o_yes(va_list *args, char *format,
 	free(tmp);
 	ft_memset(list, 0, sizeof(t_printf));
 	return (ret);
+}
+
+static void		ft_instruction_big_o_no_bis(t_printf *list, char *tmp,
+				int *u, int *ret)
+{
+	if (list->plus == 1)
+	{
+		ft_putchar('+');
+		*ret = *ret + 1;
+	}
+	if (list->aq_aq == 1)
+	{
+		if (tmp[0] != '-')
+			ft_putchar(' ');
+		*ret = *ret + 1;
+	}
+	if (list->dieze == 1 && *u != 2 && list->champ != 1)
+	{
+		ft_putchar('0');
+		*ret = *ret + 1;
+	}
+	if (list->point == 1 && *u == 2 && list->precision == 0 &&
+		list->champ == 1 && list->dieze == 0)
+		ft_dell_zero(tmp);
+}
+
+static void		ft_instruction_big_o_no_ter(t_printf *list, char *tmp,
+				int u, int *ret)
+{
+	if (list->point == 1 && u == 2 && list->precision == 0 &&
+		list->champ == 0 && list->dieze == 0)
+		*ret = *ret + 0;
+	else
+	{
+		*ret = *ret + ft_strlen(tmp);
+		ft_putstr(tmp);
+	}
 }
 
 static int		ft_instruction_big_o_no(va_list *args, char *format,
@@ -39,7 +76,7 @@ static int		ft_instruction_big_o_no(va_list *args, char *format,
 
 	ret = 0;
 	u = 0;
-	ft_flag_cast(args, format, list);	
+	ft_flag_cast(args, list);
 	if (ft_atoi(list->str) == 0)
 		u = 2;
 	if (list->point == 1)
@@ -49,36 +86,11 @@ static int		ft_instruction_big_o_no(va_list *args, char *format,
 		ft_strdel(&tmp);
 	}
 	if (list->moins == 1)
-		tmp = ft_app_taille_cham_moins_o(list);
+		tmp = ft_app_taille_cham_moins_o(list, &u);
 	else
 		tmp = ft_app_taille_cham(list);
-	if (list->plus == 1)
-	{
-		ft_putchar('+');
-		ret = ret + 1;
-	}
-	if (list->aq_aq == 1)
-	{
-		if (tmp[0] != '-')
-			ft_putchar(' ');
-		ret = ret + 1;
-	}
-	if (list->dieze == 1 && u != 2 && list->champ != 1)
-	{
-		ft_putchar('0');
-		ret = ret + 1;
-	}
-	if (list->point == 1 && u == 2 && list->precision == 0 &&
-		list->champ == 1 && list->dieze == 0)
-		ft_dell_zero(tmp);
-	if (list->point == 1 && u == 2 && list->precision == 0 &&
-		list->champ == 0 && list->dieze == 0)
-		ret = ret + 0;
-	else
-	{
-		ret = ret + ft_strlen(tmp);
-		ft_putstr(tmp);
-	}
+	ft_instruction_big_o_no_bis(list, tmp, &u, &ret);
+	ft_instruction_big_o_no_ter(list, tmp, u, &ret);
 	free(list->str);
 	free(tmp);
 	ft_memset(list, 0, sizeof(t_printf));

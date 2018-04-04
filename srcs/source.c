@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 06:19:14 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/01 15:41:59 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/03/28 22:21:19 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int		ft_printf(const char *format, ...)
 	list = (t_printf*)ft_memalloc(sizeof(t_printf));
 	va_start(args, format);
 	i = ft_parceur(list, (char*)format, &args);
-	//free(list);
+	free(list);
+	list = NULL;
 	va_end(args);
 	return (i);
 }

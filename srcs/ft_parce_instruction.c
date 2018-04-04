@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 05:05:04 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/08 21:54:40 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/03 23:32:43 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,36 @@
 
 static void		ft_flag_parce_choice_end(t_printf *list, char *format, int *i)
 {
-	if (format[*i] == 'd')
+	if (format[*i] == 'd' || format[*i] == 'D' || format[*i] == 'i')
 		list->conv_d = 1;
-	else if (format[*i] == 'D')
-	 	list->conv_d = 1;
-	else if (format[*i] == 'i')
-	 	list->conv_d = 1;
-	else if (format[*i] == 'o')
-	 	list->conv_o = 1;
+	else if (format[*i] == 'o' || format[*i] == 'O')
+		ft_flag_parce_choice_end_bis(list, format, i);
 	else if (format[*i] == 'u')
 		list->conv_u = 1;
 	else if (format[*i] == 'x')
 		list->conv_x = 1;
 	else if (format[*i] == 's')
-	 	list->conv_s = 1;
+		list->conv_s = 1;
 	else if (format[*i] == 'c')
-	 	list->conv_c = 1;
+		list->conv_c = 1;
 	else if (format[*i] == 'p')
 		list->conv_p = 1;
 	else if (format[*i] == 'X')
 		list->conv_X = 1;
 	else if (format[*i] == 'U')
-	 	list->conv_U = 1;
-	else if (format[*i] == 'O')
-	 	list->conv_O = 1;
+		list->conv_U = 1;
 	else if (format[*i] == 'S')
-	 	list->conv_S = 1;
+		list->conv_S = 1;
 	else if (format[*i] == 'C')
-	 	list->conv_C = 1;
+		list->conv_C = 1;
 	else if (format[*i] == '%')
-	{
 		list->spl = 1;
-	}		
 }
 
 static void		ft_flag_parce_choice_two(t_printf *list, char *format, int *i)
 {
 	if (format[*i] == 'j' || format[*i] == 'z' || format[*i] == 'h' ||
-	format[*i] == 'l')
+			format[*i] == 'l')
 	{
 		if (format[*i] == 'h' && format[*i + 1] == 'h')
 			list->flag_hh = 1;
@@ -72,9 +64,10 @@ static void		ft_flag_parce_choice_two(t_printf *list, char *format, int *i)
 static void		ft_flag_parce_choice_one(t_printf *list, char *format, int *i)
 {
 	if ((format[*i] == '*' && format[*i - 1] == '%') ||
-	(format[*i] == '*' && format[*i - 1] == '0') ||
-	(format[*i] == '*' && format[*i - 1] == '-' && format[*i - 2] == '%') ||
-	(format[*i] == '*' && format[*i - 1] == '-' && format[*i - 3] == '%'))
+			(format[*i] == '*' && format[*i - 1] == '0') ||
+			(format[*i] == '*' && format[*i - 1] == '-' &&
+			format[*i - 2] == '%') || (format[*i] == '*' &&
+			format[*i - 1] == '-' && format[*i - 3] == '%'))
 	{
 		list->champ = 1;
 		list->chetoile = 1;
@@ -94,11 +87,8 @@ static void		ft_flag_parce_choice_one(t_printf *list, char *format, int *i)
 
 static void		ft_flag_parce_choice(t_printf *list, char *format, int *i)
 {
-	
 	if (format[*i] == '%' && format[*i - 1] == '%')
-	{
 		list->dbl_prct = 1;
-	}
 	if ((format[*i - 1] == '%' && format[*i] == '#') ||
 			(format[*i - 1] == '%' && format[*i] == ' ') ||
 			(format[*i - 1] == '%' && format[*i] == '+') ||
@@ -107,8 +97,9 @@ static void		ft_flag_parce_choice(t_printf *list, char *format, int *i)
 			(format[*i - 1] == '%' && format[*i] == '0') ||
 			(format[*i - 2] == '%' && format[*i] == '0') ||
 			(format[*i - 2] == '%' && format[*i] == '-') ||
-			(format[*i - 2] == '%' && format[*i - 1] == '#' && format[*i] == '0') ||
-			(format[*i - 2] == '%' && format[*i] == '#') || (format[*i] == '+'))
+			(format[*i - 2] == '%' && format[*i - 1] == '#' &&
+			format[*i] == '0') || (format[*i - 2] == '%' &&
+			format[*i] == '#') || (format[*i] == '+'))
 		ft_flag_parce((char*)format, i, list);
 	else if (ft_isdigit(format[*i]) == 1)
 	{
@@ -125,30 +116,20 @@ int				ft_parce_instruction(t_printf *list, char *format, int *i)
 	ft_memset(list, 0, sizeof(t_printf));
 	if (format[*i] == '%')
 		(*i)++;
-	while (format[*i] != 'd' || format[*i] != 'i' || format[*i] != 'o' ||
-			format[*i] != 'u' || format[*i] != 'x' || format[*i] != 's' ||
-			format[*i] != 'c' || format[*i] != 'p' || format[*i] != 'X' ||
-			format[*i] != 'U' || format[*i] != 'O' || format[*i] != 'S' ||
-			format[*i] != 'C' || format[*i] != '%' || format[*i] == 'D')
+	while (ft_for_the_norm(format, i) == 1)
 	{
 		ft_flag_parce_choice(list, format, i);
 		ft_flag_parce_choice_one(list, format, i);
 		ft_flag_parce_choice_two(list, format, i);
-		if (format[*i] == 'd' || format[*i] == 'i' || format[*i] == 'o' ||
-				format[*i] == 'u' || format[*i] == 'x' || format[*i] == 's' ||
-				format[*i] == 'c' || format[*i] == 'p' || format[*i] == 'X' ||
-				format[*i] == 'U' || format[*i] == 'O' || format[*i] == 'D' ||
-				format[*i] == 'S' || format[*i] == 'C' || format[*i] == '%')
+		if (ft_for_the_norm_bis(format, i) == 1)
 		{
 			if (format[*i] == '%')
-			{
 				list->conv_prct = list->conv_prct + 1;
-			}
 			ft_flag_parce_choice_end(list, format, i);
 			break ;
 		}
 		if (format[*i] == '\0')
-		 	break ;
+			break ;
 		(*i)++;
 	}
 	return (ret);
