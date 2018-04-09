@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 19:53:25 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/28 20:46:28 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/09 20:42:01 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ int				ft_parceur(t_printf *list, char *format, va_list *args)
 			if (format[i] == '%')
 				ret = ret + ft_parce_instruction(list, format, &i);
 		ft_choice_instruction(args, format, list, &ret);
+		if (format[i] == '\0')
+			break ;
 		i++;
 	}
 	return (ret);

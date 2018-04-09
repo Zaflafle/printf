@@ -6,7 +6,7 @@
 #    By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/30 22:29:02 by macuguen          #+#    #+#              #
-#    Updated: 2018/04/04 19:52:34 by macuguen         ###   ########.fr        #
+#    Updated: 2018/04/09 20:34:54 by macuguen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = libftprintf.a
 CC = gcc
 #CFLAGS = 
-CFLAGS = -Wall -Wextra -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -g3
 
 LIBDIR = ./libft/
 SRCDIR = ./srcs/

@@ -6,14 +6,14 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 08:03:15 by macuguen          #+#    #+#             */
-/*   Updated: 2018/04/03 20:44:45 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/09 20:42:01 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "../includes/ft_printf.h"
 
-static void		ft_instruction_p_no_one(t_count *env, t_printf *list, char *tmp)
+static char		*ft_instruction_p_no_one(t_count *env, t_printf *list, char *tmp)
 {
 	if (list->moins == 1 && list->champ == 1)
 		tmp = ft_app_taille_cham_moins_p(list);
@@ -26,6 +26,7 @@ static void		ft_instruction_p_no_one(t_count *env, t_printf *list, char *tmp)
 		tmp[env->i - 1] = 'x';
 		tmp[env->i - 2] = '0';
 	}
+	return (tmp);
 }
 
 static int		ft_instruction_p_no(va_list *args, char *format,
@@ -36,7 +37,7 @@ static int		ft_instruction_p_no(va_list *args, char *format,
 	ft_bzero(&env, sizeof(t_count));
 	ft_flag_cast(args, list);
 	if (list->moins == 1 && list->champ == 1)
-		ft_instruction_p_no_one(&env, list, tmp);
+		tmp = ft_instruction_p_no_one(&env, list, tmp);
 	else if (list->champ == 0 && ft_strlen(list->str) <= 12)
 	{
 		ft_putstr("0x");
@@ -44,7 +45,7 @@ static int		ft_instruction_p_no(va_list *args, char *format,
 		env.ret = env.ret + 2;
 	}
 	else
-		ft_instruction_p_no_one(&env, list, tmp);
+		tmp = ft_instruction_p_no_one(&env, list, tmp);
 	env.ret = env.ret + ft_strlen(tmp);
 	ft_putstr(tmp);
 	free(list->str);

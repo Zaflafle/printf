@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 04:18:39 by macuguen          #+#    #+#             */
-/*   Updated: 2018/02/28 18:13:54 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/08 20:27:43 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ char	*ft_itoa_base_long(long long n, int base)
 	char	*str;
 	int		i;
 
-	str = (char *)malloc(sizeof(*str) * 12);
+	str = (char *)malloc(sizeof(*str) * 22);
 	i = 0;
-	while (i < 12)
+	while (i < 22)
 	{
 		str[i] = '\0';
 		i++;

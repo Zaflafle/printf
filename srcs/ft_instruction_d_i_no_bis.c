@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 19:02:29 by macuguen          #+#    #+#             */
-/*   Updated: 2018/04/03 19:03:51 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/09 20:42:01 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ char			*ft_annex_d_i_no_plus(t_printf *list, char *tmp,
 	else if (list->plus == 1 &&
 			list->zero != 1 && list->point == 1)
 		ft_annex_d_i_no_plus_bis(list, tmp, ret, u);
-	if (list->zero == 1 && list->aq_aq == 1)
-		tmp[0] = ' ';
 	if (list->plus == 1 && list->zero == 1 && list->champ == 1 &&
 		(size_t)list->taille_cham > ft_strlen(list->str))
 		ft_plus_champ(tmp);
@@ -104,6 +102,8 @@ char			*ft_annex_d_i_no_end(t_printf *list, char *tmp, int u, int *ret)
 	int i;
 
 	i = 0;
+	if (list->zero == 1 && list->aq_aq == 1)
+		tmp[0] = ' ';
 	ft_annex_d_i_no_end_bis(list, tmp, u, ret);
 	if (list->point == 1 && u == 1 && list->champ == 1 &&
 		(size_t)list->precision >= ft_strlen(list->str))

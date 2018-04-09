@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 22:14:06 by macuguen          #+#    #+#             */
-/*   Updated: 2018/03/31 18:05:33 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/08 22:39:43 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -742,9 +742,43 @@ printf("||%d||",printf("%li\n", LONG_MIN));
         // printf("{%d}\n", printf("\033[1;31mTest 4 => \033[0m|%.0p|, |%.p|", 0, 0));
         // printf("{%d}\n", printf("\033[1;32mTest 23 => \033[0m|%#05p|", 42));
         // printf("{%d}\n", printf("\033[1;32mTest 6 => \033[0m|%lls|", "salut"));
-    	// printf("{%d}\n", printf("\033[1;32mTest 3 => \033[0m|%#10RR|"));
+        // printf("{%d}\n", printf("\033[1;32mTest 3 => \033[0m|%#10RR|"));
+        // printf("{%d}",printf("%lld\n", LLONG_MIN));
+        // printf("{%d}",printf("%lli\n", LLONG_MIN));
+        // printf("{%d}",ft_printf("%lld\n", LLONG_MIN));
+        // printf("{%d}",ft_printf("%lli\n", LLONG_MIN));
+        // printf("%llu, %llu\n", 0, ULLONG_MAX);
+        // printf("%llo, %llo\n", 0, ULLONG_MAX);
+        // printf("%llx, %llx\n", 0, ULLONG_MAX);
+        // ft_printf("%llu, %llu\n", 0, ULLONG_MAX);
+        // ft_printf("%llo, %llo\n", 0, ULLONG_MAX);
+        // ft_printf("%llx, %llx\n", 0, ULLONG_MAX);
+        // printf("%hhd", CHAR_MAX + 42);
+        // printf("%hhd", CHAR_MIN - 42);
+        // printf("%hhd", CHAR_MAX + 42);
+        // printf("%hhO, %hhO", 0, USHRT_MAX);
+        // printf("%hhU, %hhU", 0, USHRT_MAX);
+        // printf("%hhD, %hhD", 0, USHRT_MAX);
+        // printf("%hhi", CHAR_MIN - 42);
+        // printf("%hhu, %hhu", 0, UCHAR_MAX);
+        // printf("%hho, %hho", 0, UCHAR_MAX);
+        // printf("%hhx, %hhx", 0, UCHAR_MAX);
+        // printf("%hhX, %hhX", 0, UCHAR_MAX);
+        // printf("{%5p}\n", 0);
+        // printf("{%-15p}\n", 0);
+        // printf("{%d}\n", printf("{%-13p}\n", &strlen));
+        // printf("{%d}\n", printf("{%-12p}\n", &strlen));
+        // printf("{%10R}\n");
+        // ft_printf("{%5p}\n", 0);
+        // ft_printf("{%-15p}\n", 0);
+        // printf("{%d}\n", ft_printf("{%-13p}\n", &strlen));
+        // printf("{%d}\n", ft_printf("{%-12p}\n", &strlen));
+        // ft_printf("{%10R}\n");
+        // printf("{%-15Z}\n", 123);
+        // ft_printf("{%-15Z}\n", 123);
+
+        printf("{%d}\n", printf("{% 03d}", 0));
+        printf("{%d}\n", ft_printf("{% 03d}", 0));
         
-    
-    
     return (0);
 }

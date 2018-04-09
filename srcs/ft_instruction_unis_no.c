@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 20:38:04 by macuguen          #+#    #+#             */
-/*   Updated: 2018/04/04 21:08:20 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/09 20:42:01 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ static void		ft_instruction_unis_no_two(t_count *env, t_printf *list,
 	}
 	else
 	{
-		while (tmp[env->p] > '\0')
+		while (tmp[env->p] != '\0')
 			ft_putchawr(tmp[env->p++]);
 		ft_strdel_w(&tmp);
 	}
 }
 
-static void		*ft_instruction_unis_no_one(t_count *env, t_printf *list,
+static wchar_t	*ft_instruction_unis_no_one(t_count *env, t_printf *list,
 					wchar_t *tmp)
 {
 	if (list->champ == 1 && list->moins != 1)
@@ -72,10 +72,8 @@ static void		*ft_instruction_unis_no_one(t_count *env, t_printf *list,
 	else if (ft_strlen_w(list->unico) == 0)
 		env->ret = env->ret + 0;
 	else
-	{
 		env->ret = env->ret + ft_strlen_w(tmp);
-		printf("ret = {%zu}\n",env->ret);		
-	}
+	return (tmp);
 }
 
 int				ft_tfc(t_printf *list)
@@ -102,7 +100,7 @@ int				ft_instruction_unis_no(va_list *args,
 	list->unico = va_arg(*args, wchar_t*);
 	if (list->champ == 1)
 	{
-		ft_instruction_unis_no_one(&env, list, tmp);
+		tmp = ft_instruction_unis_no_one(&env, list, tmp);
 		ft_instruction_unis_no_two(&env, list, tmp);
 	}
 	else

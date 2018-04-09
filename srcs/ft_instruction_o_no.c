@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/23 05:44:31 by macuguen          #+#    #+#             */
-/*   Updated: 2018/04/03 20:43:49 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/09 20:42:01 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char		*ft_annex_o_no_plus(t_printf *list, char *tmp, int *ret, int *u)
 	return (tmp);
 }
 
-static void		*ft_annex_o_no_bis(t_printf *list, char *tmp, int *u)
+static void		ft_annex_o_no_bis(t_printf *list, char *tmp, int *u)
 {
 	if (ft_atoi(list->str) == 0)
 		*u = 2;

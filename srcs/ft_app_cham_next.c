@@ -6,7 +6,7 @@
 /*   By: macuguen <macuguen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 04:46:19 by macuguen          #+#    #+#             */
-/*   Updated: 2018/04/03 21:09:28 by macuguen         ###   ########.fr       */
+/*   Updated: 2018/04/05 17:34:08 by macuguen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../includes/ft_printf.h"
 
 static void	ft_app_taille_cham_moins_w_two(t_printf *list,
-			char *tmp, t_count *env)
+			wchar_t *tmp, t_count *env)
 {
 	env->k = 0;
 	while (env->i < env->j)
@@ -26,7 +26,7 @@ static void	ft_app_taille_cham_moins_w_two(t_printf *list,
 }
 
 static void	ft_app_taille_cham_moins_w_one(t_printf *list,
-			char *tmp, t_count *env)
+			wchar_t *tmp, t_count *env)
 {
 	while (env->i < env->j)
 	{
